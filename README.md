@@ -1,2 +1,31 @@
 # mongodb
 shows step by step to create users in mongodb and enable authentication 
+Note : steps to be executed on Linux. 
+      mongodb version is 3.2.9(present)
+
+1.first install mongodb. find the download link here https://www.mongodb.com/download-center#community
+2.open terminal in linux
+3.start mongodb using "mongod"(without quotes) command
+4.open other terminal and type "mongo" command to connect to mongodb
+follow below steps
+
+5.>  use admin
+6.>  db.createUser(
+    {
+      user: "myUserAdmin",
+      pwd: "abc123",
+      roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
+    }
+    );
+7. dissconnect mongo(by usng cntrl + D)
+8. Now start mongodb using "mongod --auth" 
+9. in other windo connect mongodb using "mongo" command
+
+10. use this command to loging 
+    mongo --port 27017 -u "myUserAdmin" -p "abc123" --authenticationDatabase "admin"
+    
+11. otherwise just type mongo and once logged in then we can use following commands 
+    use admin
+    db.auth("myUserAdmin", "abc123" );
+12. done you are successfully created user and loggedin. 
+
